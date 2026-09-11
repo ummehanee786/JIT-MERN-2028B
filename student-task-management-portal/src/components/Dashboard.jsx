@@ -43,6 +43,11 @@ function Dashboard() {
     function addTask(newTask){
         setTasks([...tasks, newTask]);
     }
+    function deleteTask(id){
+        setTasks(
+            tasks.filter((task)=>task.id !== id)
+        );
+    }
 
     return (
         <main>
@@ -55,6 +60,7 @@ function Dashboard() {
             </div>
 
             <AddTask  onAddTask={addTask}/>
+        
 
             <h2>Recent Tasks</h2>
 
@@ -65,7 +71,8 @@ function Dashboard() {
                         title={task.title} 
                         description={task.description} 
                         status={task.status}
-                        onToggle={()=>toggleTask(task.id)} 
+                        onToggle={()=>toggleTask(task.id)}
+                        onDelete={()=>deleteTask(task.id)} 
                     />
                 ))};
             </div>
